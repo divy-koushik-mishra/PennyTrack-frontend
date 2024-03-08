@@ -8,7 +8,8 @@ import {
 } from "@material-tailwind/react";
 import React from "react";
 import Home from "./Home";
-import Link from "next/link";
+import Features from "./Features";
+import About from "./About";
 
 export default function TabBar() {
 	const [activeTab, setActiveTab] = React.useState("home");
@@ -17,35 +18,24 @@ export default function TabBar() {
 			label: "Home",
 			value: "home",
 			desc: <Home />,
-			link: "hero",
 		},
 		{
 			label: "Features",
 			value: "features",
-			desc: "",
-			link: "features",
+			desc: <Features />,
 		},
 		{
 			label: "About Us",
 			value: "about-us",
-			desc: "",
-			link: "about",
+			desc: <About />,
 		},
 	];
-
-	const renderContent = (desc, link) => {
-		if (desc) {
-			return desc;
-		} else {
-			return <Link href={`#${link}`}></Link>;
-		}
-	};
 
 	return (
 		<div className="">
 			<Tabs value={activeTab}>
 				<TabsHeader
-					className="flex justify-center items-center bg-gray-800 p-4 w-1/4 mx-auto my-8"
+					className="flex justify-center items-center bg-gray-800 p-4 w-1/4 mx-auto my-5"
 					indicatorProps={{
 						className: `absolute inset-0 z-10 h-full bg-light-green-500 rounded-md shadow px-8 align-middle`,
 					}}
@@ -62,9 +52,9 @@ export default function TabBar() {
 					))}
 				</TabsHeader>
 				<TabsBody>
-					{data.map(({ value, desc, link }) => (
+					{data.map(({ value, desc }) => (
 						<TabPanel key={value} value={value}>
-							{renderContent(desc, link)}
+							{desc}
 						</TabPanel>
 					))}
 				</TabsBody>
