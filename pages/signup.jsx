@@ -28,8 +28,15 @@ export default function signup() {
 					</Typography>
 				</CardHeader>
 				<CardBody className="flex flex-col gap-4">
+					<Input label="Name" size="lg" color="white" />
 					<Input label="Email" size="lg" color="white" />
-					<Input label="Password" size="lg" color="white" />
+					<Input label="Password" size="lg" color="white" type="password" />
+					<Input
+						label="Confirm Password"
+						size="lg"
+						color="white"
+						type="password"
+					/>
 					<div className="-ml-2.5">
 						<Checkbox
 							label="Remember Me"
