@@ -25,10 +25,10 @@ export default function Home() {
 						input and categorize your expenses, set and track a budget.
 					</p>
 					<div className="flex items-center gap-4">
-						<Link href="#buttons-with-link">
+						<Link href="/login">
 							<Button size="lg">Log In</Button>
 						</Link>
-						<Link href="#buttons-with-link">
+						<Link href="/signup">
 							<Button
 								variant="outlined"
 								size="lg"

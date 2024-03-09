@@ -29,12 +29,12 @@ export default function About() {
 				management accessible to everyone.
 			</p>
 			<div className="flex justify-center items-center gap-4">
-				<Link href="#buttons-with-link">
+				<Link href="/login">
 					<Button size="lg" className="">
 						Log In
 					</Button>
 				</Link>
-				<Link href="#buttons-with-link">
+				<Link href="/signup">
 					<Button
 						variant="outlined"
 						size="lg"
