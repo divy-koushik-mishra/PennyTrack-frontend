@@ -41,7 +41,7 @@ export default function signup() {
 				</CardBody>
 				<CardFooter className="pt-0">
 					<Button variant="gradient" className="text-light-green-500" fullWidth>
-						Log In
+						Sign Up
 					</Button>
 					<Typography variant="small" className="mt-6 flex justify-center">
 						Don&apos;t have an account?
