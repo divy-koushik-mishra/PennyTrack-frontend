@@ -51,7 +51,7 @@ export default function signup() {
 						Sign Up
 					</Button>
 					<Typography variant="small" className="mt-6 flex justify-center">
-						Don&apos;t have an account?
+						Have an account?
 						<Typography
 							as="a"
 							href="/login"
@@ -59,7 +59,7 @@ export default function signup() {
 							color="light-green"
 							className="ml-1 font-bold"
 						>
-							Sign up
+							Log In
 						</Typography>
 					</Typography>
 				</CardFooter>
