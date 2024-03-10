@@ -9,6 +9,7 @@ import {
 	Checkbox,
 	Button,
 } from "@material-tailwind/react";
+import Link from "next/link";
 
 export default function login() {
 	return (
@@ -41,9 +42,15 @@ export default function login() {
 					</div>
 				</CardBody>
 				<CardFooter className="pt-0">
-					<Button variant="gradient" className="text-light-green-500" fullWidth>
-						Log In
-					</Button>
+					<Link href="/dashboard/">
+						<Button
+							variant="gradient"
+							className="text-light-green-500"
+							fullWidth
+						>
+							Log In
+						</Button>
+					</Link>
 					<Typography variant="small" className="mt-6 flex justify-center">
 						Don&apos;t have an account?
 						<Typography
