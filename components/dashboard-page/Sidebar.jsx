@@ -62,7 +62,7 @@ export function Sidebar() {
 	];
 
 	return (
-		<Card className="h-screen w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 bg-[#1d1d1d]">
+		<Card className="h-screen w-full max-w-[16rem] p-4 shadow-xl shadow-blue-gray-900/5 bg-[#1d1d1d]">
 			<div className="mb-2 p-4">
 				<Typography variant="h3" color="light-green">
 					PennyTrack
