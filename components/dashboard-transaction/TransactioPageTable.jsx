@@ -17,7 +17,15 @@ import {
 	Input,
 } from "@material-tailwind/react";
 
-const TABLE_HEAD = ["Transaction", "Amount", "Date", "Status", "Account", ""];
+const TABLE_HEAD = [
+	"Transaction",
+	"Amount",
+	"Date",
+	"Status",
+	"Type",
+	"Account",
+	"",
+];
 
 const TABLE_ROWS = [
 	{
@@ -29,6 +37,7 @@ const TABLE_ROWS = [
 		account: "visa",
 		accountNumber: "1234",
 		expiry: "06/2026",
+		type: "Debit",
 	},
 	{
 		img: "https://docs.material-tailwind.com/img/logos/logo-amazon.svg",
@@ -39,6 +48,7 @@ const TABLE_ROWS = [
 		account: "master-card",
 		accountNumber: "1234",
 		expiry: "06/2026",
+		type: "Debit",
 	},
 	{
 		img: "https://docs.material-tailwind.com/img/logos/logo-pinterest.svg",
@@ -49,6 +59,7 @@ const TABLE_ROWS = [
 		account: "master-card",
 		accountNumber: "1234",
 		expiry: "06/2026",
+		type: "Debit",
 	},
 	{
 		img: "https://docs.material-tailwind.com/img/logos/logo-google.svg",
@@ -59,6 +70,7 @@ const TABLE_ROWS = [
 		account: "visa",
 		accountNumber: "1234",
 		expiry: "06/2026",
+		type: "Debit",
 	},
 	{
 		img: "https://docs.material-tailwind.com/img/logos/logo-netflix.svg",
@@ -69,6 +81,7 @@ const TABLE_ROWS = [
 		account: "visa",
 		accountNumber: "1234",
 		expiry: "06/2026",
+		type: "Debit",
 	},
 	{
 		img: "https://docs.material-tailwind.com/img/logos/logo-spotify.svg",
@@ -79,6 +92,7 @@ const TABLE_ROWS = [
 		account: "visa",
 		accountNumber: "1234",
 		expiry: "06/2026",
+		type: "Debit",
 	},
 	{
 		img: "https://docs.material-tailwind.com/img/logos/logo-amazon.svg",
@@ -89,6 +103,7 @@ const TABLE_ROWS = [
 		account: "master-card",
 		accountNumber: "1234",
 		expiry: "06/2026",
+		type: "Debit",
 	},
 	{
 		img: "https://docs.material-tailwind.com/img/logos/logo-pinterest.svg",
@@ -99,6 +114,7 @@ const TABLE_ROWS = [
 		account: "master-card",
 		accountNumber: "1234",
 		expiry: "06/2026",
+		type: "Debit",
 	},
 	{
 		img: "https://docs.material-tailwind.com/img/logos/logo-google.svg",
@@ -109,6 +125,7 @@ const TABLE_ROWS = [
 		account: "visa",
 		accountNumber: "1234",
 		expiry: "06/2026",
+		type: "Debit",
 	},
 	{
 		img: "https://docs.material-tailwind.com/img/logos/logo-netflix.svg",
@@ -119,6 +136,7 @@ const TABLE_ROWS = [
 		account: "visa",
 		accountNumber: "1234",
 		expiry: "06/2026",
+		type: "Debit",
 	},
 ];
 
@@ -171,6 +189,7 @@ export function TransactionsPageTable() {
 									account,
 									accountNumber,
 									expiry,
+									type,
 								},
 								index,
 							) => {
@@ -231,6 +250,15 @@ export function TransactionsPageTable() {
 													}
 												/>
 											</div>
+										</td>
+										<td className={classes}>
+											<Typography
+												variant="small"
+												color="white"
+												className="font-normal"
+											>
+												{type}
+											</Typography>
 										</td>
 										<td className={classes}>
 											<div className="flex items-center gap-3">
