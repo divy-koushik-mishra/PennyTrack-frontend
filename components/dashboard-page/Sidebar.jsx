@@ -57,7 +57,7 @@ export function Sidebar() {
 		{
 			icon: <PowerIcon className="h-5 w-5" />,
 			label: "Log Out",
-			href: "/dashboard/logout",
+			href: "/",
 		},
 	];
 
