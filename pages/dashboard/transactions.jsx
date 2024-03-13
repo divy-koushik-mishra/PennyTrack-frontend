@@ -1,6 +1,6 @@
-import { Sidebar } from "@/components/dashboard-homepage/Sidebar";
-import { TransactionsPageTable } from "@/components/dashboard-transaction/TransactioPageTable";
-import TransactionTopbar from "@/components/dashboard-transaction/TransactionTopbar";
+import { Sidebar } from "@/components/dashboard/Homepage/Sidebar";
+import { TransactionsPageTable } from "@/components/dashboard/Transaction/TransactioPageTable";
+import TransactionTopbar from "@/components/dashboard/Transaction/TransactionTopbar";
 
 export default function transactions() {
 	return (

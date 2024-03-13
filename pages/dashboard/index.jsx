@@ -1,10 +1,10 @@
-import Budgeting from "@/components/dashboard-homepage/Budgeting";
-import Chart from "@/components/dashboard-homepage/Chart";
-import IEBCards from "@/components/dashboard-homepage/IEBCards";
-import Reminders from "@/components/dashboard-homepage/Reminders";
-import { Sidebar } from "@/components/dashboard-homepage/Sidebar";
-import Topbar from "@/components/dashboard-homepage/Topbar";
-import { TransactionsTable } from "@/components/dashboard-homepage/TransactionsTable";
+import Budgeting from "@/components/dashboard/Homepage/Budgeting";
+import Chart from "@/components/dashboard/Homepage/Chart";
+import IEBCards from "@/components/dashboard/Homepage/IEBCards";
+import Reminders from "@/components/dashboard/Homepage/Reminders";
+import { Sidebar } from "@/components/dashboard/Homepage/Sidebar";
+import Topbar from "@/components/dashboard/Homepage/Topbar";
+import { TransactionsTable } from "@/components/dashboard/Homepage/TransactionsTable";
 import React from "react";
 
 export default function Dashboard() {
