@@ -135,7 +135,7 @@ const TABLE_ROWS = [
 	},
 ];
 
-export function ViewIncome() {
+export function ViewExpenses() {
 	return (
 		<Card className="h-screen w-[96%] bg-[#1d1d1d]">
 			<CardHeader
@@ -145,7 +145,7 @@ export function ViewIncome() {
 			>
 				<div className="mb-4 flex flex-col justify-between gap-8 md:flex-row md:items-center ">
 					<Typography variant="h4" color="light-green">
-						Recent Transactions
+						Recent Expenses
 					</Typography>
 					<Typography color="light-green" className="mt-1 font-normal">
 						These are details about the last transactions

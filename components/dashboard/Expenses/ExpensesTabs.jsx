@@ -7,8 +7,8 @@ import {
 	TabsHeader,
 } from "@material-tailwind/react";
 import React from "react";
-import AddIncome from "./AddExpenses";
-import { ViewIncome } from "./ViewExpenses";
+import AddExpenses from "./AddExpenses";
+import { ViewExpenses } from "./ViewExpenses";
 
 export default function ExpensesTabs() {
 	const [activeTab, setActiveTab] = React.useState("add");
@@ -16,12 +16,12 @@ export default function ExpensesTabs() {
 		{
 			label: "Add",
 			value: "add",
-			desc: <AddIncome />,
+			desc: <AddExpenses />,
 		},
 		{
 			label: "View",
 			value: "view",
-			desc: <ViewIncome />,
+			desc: <ViewExpenses />,
 		},
 	];
 
