@@ -1,20 +1,19 @@
 import {
+	ArrowTrendingUpIcon,
+	BarsArrowDownIcon,
+	BellAlertIcon,
+	BuildingStorefrontIcon,
+	ClipboardDocumentListIcon,
+	PowerIcon,
+	PresentationChartBarIcon,
+} from "@heroicons/react/24/solid";
+import {
 	Card,
-	Typography,
 	List,
 	ListItem,
 	ListItemPrefix,
+	Typography,
 } from "@material-tailwind/react";
-import {
-	PresentationChartBarIcon,
-	ClipboardDocumentListIcon,
-	BellAlertIcon,
-	Cog6ToothIcon,
-	PowerIcon,
-	BuildingStorefrontIcon,
-	ArrowTrendingUpIcon,
-	BarsArrowDownIcon,
-} from "@heroicons/react/24/solid";
 import Link from "next/link";
 
 export function Sidebar() {
@@ -48,11 +47,6 @@ export function Sidebar() {
 			icon: <BellAlertIcon className="h-5 w-5" />,
 			label: "Reminders",
 			href: "/dashboard/reminders",
-		},
-		{
-			icon: <Cog6ToothIcon className="h-5 w-5" />,
-			label: "Settings",
-			href: "/dashboard/settings",
 		},
 		{
 			icon: <PowerIcon className="h-5 w-5" />,
