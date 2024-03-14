@@ -2,7 +2,7 @@ import Budgeting from "@/components/dashboard/Homepage/Budgeting";
 import Chart from "@/components/dashboard/Homepage/Chart";
 import IEBCards from "@/components/dashboard/Homepage/IEBCards";
 import Reminders from "@/components/dashboard/Homepage/Reminders";
-import { Sidebar } from "@/components/dashboard/Homepage/Sidebar";
+import { Sidebar } from "@/components/dashboard/Sidebar";
 import Topbar from "@/components/dashboard/Homepage/Topbar";
 import { TransactionsTable } from "@/components/dashboard/Homepage/TransactionsTable";
 import React from "react";

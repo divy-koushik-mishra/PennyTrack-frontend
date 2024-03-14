@@ -1,4 +1,4 @@
-import { Sidebar } from "@/components/dashboard/Homepage/Sidebar";
+import { Sidebar } from "@/components/dashboard/Sidebar";
 import { TransactionsPageTable } from "@/components/dashboard/Transaction/TransactioPageTable";
 import TransactionTopbar from "@/components/dashboard/Transaction/TransactionTopbar";
 
@@ -12,8 +12,6 @@ export default function transactions() {
 				<div className="flex flex-col w-full space-x-6">
 					<TransactionTopbar />
 					<TransactionsPageTable />
-					<div className="flex gap-x-4 pt-6"></div>
-					<div className="flex gap-x-4 pt-6 mb-4"></div>
 				</div>
 			</div>
 		</div>
