@@ -1,5 +1,5 @@
 import { Sidebar } from "@/components/dashboard/Sidebar";
-import { TransactionsPageTable } from "@/components/dashboard/Transaction/TransactioPageTable";
+import TransactionTabs from "@/components/dashboard/Transaction/TransactionTabs";
 import TransactionTopbar from "@/components/dashboard/Transaction/TransactionTopbar";
 
 export default function transactions() {
@@ -11,7 +11,7 @@ export default function transactions() {
 				</div>
 				<div className="flex flex-col w-full space-x-6">
 					<TransactionTopbar />
-					<TransactionsPageTable />
+					<TransactionTabs />
 				</div>
 			</div>
 		</div>
