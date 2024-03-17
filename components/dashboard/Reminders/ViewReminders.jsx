@@ -112,7 +112,7 @@ export function ViewReminders() {
 						</tr>
 					</thead>
 					<tbody>
-						{reminders.map(({ _id, title, amount, createdAt, isCompleted }) => (
+						{reminders.map(({ _id, title, amount, date, isCompleted }) => (
 							<tr key={_id}>
 								<td className="p-4 border-b border-blue-gray-50">
 									<div className="flex items-center gap-3">
@@ -147,7 +147,7 @@ export function ViewReminders() {
 										color="white"
 										className="font-normal"
 									>
-										{new Date(createdAt).toLocaleString()}
+										{date}
 									</Typography>
 								</td>
 								<td className="border-b border-blue-gray-50">

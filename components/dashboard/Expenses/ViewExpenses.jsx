@@ -43,11 +43,15 @@ export function ViewExpenses() {
 					return;
 				}
 
-				const response = await axios.get(apiUrl, {
-					headers: {
-						Authorization: `Bearer ${accessToken}`,
+				const response = await axios.post(
+					apiUrl,
+					{},
+					{
+						headers: {
+							Authorization: `Bearer ${accessToken}`,
+						},
 					},
-				});
+				);
 
 				if (response.data.success) {
 					setExpense(response.data.data);
@@ -106,39 +110,37 @@ export function ViewExpenses() {
 								expense_category,
 								expense_amount,
 							}) => {
-								return (
-									<tr key={_id}>
-										<td className="p-4 border-b border-blue-gray-50">
-											<div className="flex items-center gap-3">
-												<Typography
-													variant="small"
-													color="white"
-													className="font-bold"
-												>
-													{expense_description}
-												</Typography>
-											</div>
-										</td>
-										<td className="p-4 border-b border-blue-gray-50">
+								<tr key={_id}>
+									<td className="p-4 border-b border-blue-gray-50">
+										<div className="flex items-center gap-3">
 											<Typography
 												variant="small"
 												color="white"
-												className="font-normal"
+												className="font-bold"
 											>
-												{expense_category}
+												{expense_description}
 											</Typography>
-										</td>
-										<td className="p-4 border-b border-blue-gray-50">
-											<Typography
-												variant="small"
-												color="white"
-												className="font-normal"
-											>
-												{expense_amount || "-"}
-											</Typography>
-										</td>
-									</tr>
-								);
+										</div>
+									</td>
+									<td className="p-4 border-b border-blue-gray-50">
+										<Typography
+											variant="small"
+											color="white"
+											className="font-normal"
+										>
+											{expense_category}
+										</Typography>
+									</td>
+									<td className="p-4 border-b border-blue-gray-50">
+										<Typography
+											variant="small"
+											color="white"
+											className="font-normal"
+										>
+											{expense_amount || "-"}
+										</Typography>
+									</td>
+								</tr>;
 							},
 						)}
 					</tbody>
