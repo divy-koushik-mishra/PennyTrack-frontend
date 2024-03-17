@@ -2,7 +2,7 @@ import React from "react";
 
 export default function AddBudget() {
 	return (
-		<div className="text-white">
+		<div className="text-white min-h-screen">
 			<form className="lg:flex flex-col m-4 lg:mx-[20rem]">
 				<div className="">
 					{/* category */}
