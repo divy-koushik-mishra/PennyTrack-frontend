@@ -62,16 +62,16 @@ export default function AddBudget() {
 						<p className="text-lg mb-6">Budget Category</p>
 						<select
 							type="text"
-							name="budget_category" // Set name attribute
-							value={formData.budget_category} // Set value attribute
+							name="budget_category"
+							value={formData.budget_category}
 							onChange={handleChange}
 							className="w-full h-[3.25rem] bg-[#292929] border border-[#333333] rounded-md p-4"
 						>
-							<option value="work">Rent</option>
-							<option value="main-hustle">Shopping</option>
-							<option value="side-hustle">Grocery</option>
-							<option value="trading">Fun & Eating Out</option>
-							<option value="theft">Trip</option>
+							<option value="rent">Rent</option>
+							<option value="shopping">Shopping</option>
+							<option value="grocery">Grocery</option>
+							<option value="fun_eating_out">Fun & Eating Out</option>
+							<option value="trip">Trip</option>
 							<option value="others">Others</option>
 						</select>
 					</div>
