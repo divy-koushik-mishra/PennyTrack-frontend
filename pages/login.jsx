@@ -52,6 +52,7 @@ export default function Login() {
           localStorage.setItem("accessToken", res.data.data.accessToken);
           localStorage.setItem("refreshToken", res.data.data.refreshToken);
           localStorage.setItem("username", res.data.data.user.username);
+          localStorage.setItem("fullName", res.data.data.user.fullName);
           alert("User logged in successfully");
           router.push("/dashboard");
         }
