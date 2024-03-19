@@ -20,8 +20,8 @@ export default function Login() {
   // const accessToken = localStorage.getItem("accessToken");
   if (typeof window !== "undefined") {
     const accessToken = localStorage.getItem("accessToken");
-    if (!accessToken) {
-      router.push("/login");
+    if (accessToken) {
+      router.push("/dashboard");
     }
   }
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/login`;

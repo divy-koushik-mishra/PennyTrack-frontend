@@ -16,12 +16,7 @@ export default function Signup() {
   const router = useRouter();
   //  verift access token
   // const accessToken = localStorage.getItem("accessToken");
-  if (typeof window !== "undefined") {
-    const accessToken = localStorage.getItem("accessToken");
-    if (!accessToken) {
-      router.push("/login");
-    }
-  }
+
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/register`;
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
