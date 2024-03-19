@@ -14,7 +14,7 @@ import axios from "axios";
 
 export default function Signup() {
 	const router = useRouter();
-
+	const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/register`;
 	const [fullname, setFullname] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -43,7 +43,7 @@ export default function Signup() {
 		e.preventDefault();
 		//  api post request
 		axios
-			.post("http://localhost:8000/api/v1/users/register", {
+			.post(url, {
 				fullname,
 				email,
 				password,
