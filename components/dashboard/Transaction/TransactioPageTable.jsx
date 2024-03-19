@@ -1,148 +1,61 @@
-import { PencilIcon } from "@heroicons/react/24/solid";
-import {
-	ArrowDownTrayIcon,
-	MagnifyingGlassIcon,
-} from "@heroicons/react/24/outline";
 import {
 	Card,
+	CardBody,
 	CardHeader,
 	Typography,
-	Button,
-	CardBody,
-	Chip,
-	CardFooter,
-	Avatar,
-	IconButton,
-	Tooltip,
-	Input,
 } from "@material-tailwind/react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const TABLE_HEAD = [
-	"Transaction",
-	"Amount",
-	"Date",
-	"Status",
-	"Type",
-	"Account",
-	"",
-];
-
-const TABLE_ROWS = [
-	{
-		img: "https://docs.material-tailwind.com/img/logos/logo-spotify.svg",
-		name: "Spotify",
-		amount: "$2,500",
-		date: "Wed 3:00pm",
-		status: "paid",
-		account: "visa",
-		accountNumber: "1234",
-		expiry: "06/2026",
-		type: "Debit",
-	},
-	{
-		img: "https://docs.material-tailwind.com/img/logos/logo-amazon.svg",
-		name: "Amazon",
-		amount: "$5,000",
-		date: "Wed 1:00pm",
-		status: "paid",
-		account: "master-card",
-		accountNumber: "1234",
-		expiry: "06/2026",
-		type: "Debit",
-	},
-	{
-		img: "https://docs.material-tailwind.com/img/logos/logo-pinterest.svg",
-		name: "Pinterest",
-		amount: "$3,400",
-		date: "Mon 7:40pm",
-		status: "pending",
-		account: "master-card",
-		accountNumber: "1234",
-		expiry: "06/2026",
-		type: "Debit",
-	},
-	{
-		img: "https://docs.material-tailwind.com/img/logos/logo-google.svg",
-		name: "Google",
-		amount: "$1,000",
-		date: "Wed 5:00pm",
-		status: "paid",
-		account: "visa",
-		accountNumber: "1234",
-		expiry: "06/2026",
-		type: "Debit",
-	},
-	{
-		img: "https://docs.material-tailwind.com/img/logos/logo-netflix.svg",
-		name: "netflix",
-		amount: "$14,000",
-		date: "Wed 3:30am",
-		status: "cancelled",
-		account: "visa",
-		accountNumber: "1234",
-		expiry: "06/2026",
-		type: "Debit",
-	},
-	{
-		img: "https://docs.material-tailwind.com/img/logos/logo-spotify.svg",
-		name: "Spotify",
-		amount: "$2,500",
-		date: "Wed 3:00pm",
-		status: "paid",
-		account: "visa",
-		accountNumber: "1234",
-		expiry: "06/2026",
-		type: "Debit",
-	},
-	{
-		img: "https://docs.material-tailwind.com/img/logos/logo-amazon.svg",
-		name: "Amazon",
-		amount: "$5,000",
-		date: "Wed 1:00pm",
-		status: "paid",
-		account: "master-card",
-		accountNumber: "1234",
-		expiry: "06/2026",
-		type: "Debit",
-	},
-	{
-		img: "https://docs.material-tailwind.com/img/logos/logo-pinterest.svg",
-		name: "Pinterest",
-		amount: "$3,400",
-		date: "Mon 7:40pm",
-		status: "pending",
-		account: "master-card",
-		accountNumber: "1234",
-		expiry: "06/2026",
-		type: "Debit",
-	},
-	{
-		img: "https://docs.material-tailwind.com/img/logos/logo-google.svg",
-		name: "Google",
-		amount: "$1,000",
-		date: "Wed 5:00pm",
-		status: "paid",
-		account: "visa",
-		accountNumber: "1234",
-		expiry: "06/2026",
-		type: "Debit",
-	},
-	{
-		img: "https://docs.material-tailwind.com/img/logos/logo-netflix.svg",
-		name: "netflix",
-		amount: "$14,000",
-		date: "Wed 3:30am",
-		status: "cancelled",
-		account: "visa",
-		accountNumber: "1234",
-		expiry: "06/2026",
-		type: "Debit",
-	},
-];
+const TABLE_HEAD = ["Description", "Category", "Amount", "Type", "Date"];
 
 export function TransactionsPageTable() {
+	const [transactions, setTransaction] = useState([]);
+	const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/transactions/getTransaction`;
+
+	useEffect(() => {
+		const fetchTransaction = async () => {
+			try {
+				const accessToken = localStorage.getItem("accessToken");
+				if (!accessToken) {
+					console.error("Access token not found");
+					return;
+				}
+
+				const response = await axios.post(
+					apiUrl,
+					{},
+					{
+						headers: {
+							Authorization: `Bearer ${accessToken}`,
+						},
+					},
+				);
+
+				if (response.data.success) {
+					setTransaction(response.data.data);
+				} else {
+					console.error("Failed to fetch Transactions:", response.data.message);
+				}
+			} catch (error) {
+				console.error("Error fetching Transactions:", error);
+			}
+		};
+
+		fetchTransaction();
+	}, []);
+
+	// Function to format date to DD-MM-YYYY
+	const formatDate = (dateString) => {
+		const date = new Date(dateString);
+		const day = date.getDate().toString().padStart(2, "0");
+		const month = (date.getMonth() + 1).toString().padStart(2, "0");
+		const year = date.getFullYear();
+		return `${day}-${month}-${year}`;
+	};
+
 	return (
-		<Card className="h-screen w-[96%] bg-[#1d1d1d]">
+		<Card className="h-screen w-[96%] bg-[#1d1d1d] p-5">
 			<CardHeader
 				floated={false}
 				shadow={false}
@@ -178,166 +91,69 @@ export function TransactionsPageTable() {
 						</tr>
 					</thead>
 					<tbody>
-						{TABLE_ROWS.map(
-							(
-								{
-									img,
-									name,
-									amount,
-									date,
-									status,
-									account,
-									accountNumber,
-									expiry,
-									type,
-								},
-								index,
-							) => {
-								const isLast = index === TABLE_ROWS.length - 1;
-								const classes = isLast
-									? "p-4"
-									: "p-4 border-b border-blue-gray-50";
-
-								return (
-									<tr key={name}>
-										<td className={classes}>
-											<div className="flex items-center gap-3">
-												<Avatar
-													src={img}
-													alt={name}
-													size="md"
-													className="border border-blue-gray-50 object-contain p-1"
-												/>
-												<Typography
-													variant="small"
-													color="white"
-													className="font-bold"
-												>
-													{name}
-												</Typography>
-											</div>
-										</td>
-										<td className={classes}>
+						{transactions.map(
+							({
+								_id,
+								transaction_description,
+								transaction_category,
+								transaction_amount,
+								transaction_type,
+								transaction_date,
+							}) => (
+								<tr key={_id}>
+									<td className="p-4 border-b border-blue-gray-50">
+										<div className="flex items-center gap-3">
 											<Typography
 												variant="small"
 												color="white"
-												className="font-normal"
+												className="font-bold"
 											>
-												{amount}
+												{transaction_description}
 											</Typography>
-										</td>
-										<td className={classes}>
-											<Typography
-												variant="small"
-												color="white"
-												className="font-normal"
-											>
-												{date}
-											</Typography>
-										</td>
-										<td className={classes}>
-											<div className="w-max">
-												<Chip
-													size="sm"
-													variant="ghost"
-													value={status}
-													color={
-														status === "paid"
-															? "light-green"
-															: status === "pending"
-															? "amber"
-															: "red"
-													}
-												/>
-											</div>
-										</td>
-										<td className={classes}>
-											<Typography
-												variant="small"
-												color="white"
-												className="font-normal"
-											>
-												{type}
-											</Typography>
-										</td>
-										<td className={classes}>
-											<div className="flex items-center gap-3">
-												<div className="h-9 w-12 rounded-md border border-blue-gray-50 p-1">
-													<Avatar
-														src={
-															account === "visa"
-																? "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/logos/visa.png"
-																: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/logos/mastercard.png"
-														}
-														size="sm"
-														alt={account}
-														variant="square"
-														className="h-full w-full object-contain p-1"
-													/>
-												</div>
-												<div className="flex flex-col">
-													<Typography
-														variant="small"
-														color="white"
-														className="font-normal capitalize"
-													>
-														{account.split("-").join(" ")} {accountNumber}
-													</Typography>
-													<Typography
-														variant="small"
-														color="white"
-														className="font-normal opacity-70"
-													>
-														{expiry}
-													</Typography>
-												</div>
-											</div>
-										</td>
-										<td className={classes}>
-											<Tooltip content="Edit User">
-												<IconButton variant="text" className="text-white">
-													<PencilIcon className="h-4 w-4" />
-												</IconButton>
-											</Tooltip>
-										</td>
-									</tr>
-								);
-							},
+										</div>
+									</td>
+									<td className="p-4 border-b border-blue-gray-50">
+										<Typography
+											variant="small"
+											color="white"
+											className="font-normal"
+										>
+											{transaction_category}
+										</Typography>
+									</td>
+									<td className="p-4 border-b border-blue-gray-50">
+										<Typography
+											variant="small"
+											color="white"
+											className="font-normal"
+										>
+											{transaction_amount || "-"}
+										</Typography>
+									</td>
+									<td className="p-4 border-b border-blue-gray-50">
+										<Typography
+											variant="small"
+											color="white"
+											className="font-normal"
+										>
+											{transaction_type}
+										</Typography>
+									</td>
+									<td className="p-4 border-b border-blue-gray-50">
+										<Typography
+											variant="small"
+											color="white"
+											className="font-normal"
+										>
+											{formatDate(transaction_date)}
+										</Typography>
+									</td>
+								</tr>
+							),
 						)}
 					</tbody>
 				</table>
 			</CardBody>
-			<CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4 text-white">
-				<Button variant="outlined" size="sm" color="white">
-					Previous
-				</Button>
-				<div className="flex items-center gap-2">
-					<IconButton variant="outlined" size="sm" color="white">
-						1
-					</IconButton>
-					<IconButton variant="text" size="sm" color="white">
-						2
-					</IconButton>
-					<IconButton variant="text" size="sm" color="white">
-						3
-					</IconButton>
-					<IconButton variant="text" size="sm" color="white">
-						...
-					</IconButton>
-					<IconButton variant="text" size="sm" color="white">
-						8
-					</IconButton>
-					<IconButton variant="text" size="sm" color="white">
-						9
-					</IconButton>
-					<IconButton variant="text" size="sm" color="white">
-						10
-					</IconButton>
-				</div>
-				<Button variant="outlined" size="sm" color="white">
-					Next
-				</Button>
-			</CardFooter>
 		</Card>
 	);
 }
