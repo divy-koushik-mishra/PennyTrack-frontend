@@ -1,15 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 export default function AddBudget() {
+	const [formData, setFormData] = useState({
+		budget_category: "",
+		budget_title: "",
+		budget_description: "",
+		budget_amount: "",
+		threshold_amount: "",
+	});
+
+	const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/budget/addBudget`;
+
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setFormData((prevFormData) => ({
+			...prevFormData,
+			[name]: value,
+		}));
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			const accessToken = localStorage.getItem("accessToken");
+			if (!accessToken) {
+				return;
+			}
+
+			const config = {
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			};
+
+			const response = await axios.post(url, formData, config);
+
+			console.log("Budget added successfully:", response.data);
+
+			setFormData({
+				budget_category: "",
+				budget_title: "",
+				budget_description: "",
+				budget_amount: "",
+				threshold_amount: "",
+			});
+		} catch (error) {
+			console.error("Error adding Budget:", error);
+		}
+	};
+
 	return (
 		<div className="text-white">
-			<form className="lg:flex flex-col m-4 lg:mx-[20rem]">
+			<form
+				className="lg:flex flex-col m-4 lg:mx-[20rem]"
+				onSubmit={handleSubmit}
+			>
 				<div className="">
 					{/* category */}
 					<div className="mb-6">
 						<p className="text-lg mb-6">Budget Category</p>
 						<select
 							type="text"
+							name="budget_category" // Set name attribute
+							value={formData.budget_category} // Set value attribute
+							onChange={handleChange}
 							className="w-full h-[3.25rem] bg-[#292929] border border-[#333333] rounded-md p-4"
 						>
 							<option value="work">Rent</option>
@@ -20,27 +75,47 @@ export default function AddBudget() {
 							<option value="others">Others</option>
 						</select>
 					</div>
+					{/*Title */}
+					<div className="mb-6">
+						<p className="text-lg mb-6">Budget Title</p>
+						<input
+							type="text"
+							name="budget_title"
+							value={formData.budget_title}
+							onChange={handleChange}
+							className="w-full h-[3.25rem] bg-[#292929] border border-[#333333] rounded-md p-4"
+						/>
+					</div>
 					{/* Desc */}
 					<div className="mb-6">
 						<p className="text-lg mb-6">Budget Description</p>
 						<input
 							type="text"
+							name="budget_description"
+							value={formData.budget_description}
+							onChange={handleChange}
 							className="w-full h-[3.25rem] bg-[#292929] border border-[#333333] rounded-md p-4"
 						/>
 					</div>
-					{/* Amount */}
+					{/* Budget Amount */}
 					<div className="mb-6">
 						<p className="text-lg mb-6">Budget Amount</p>
 						<input
 							type="number"
+							name="budget_amount"
+							value={formData.budget_amount}
+							onChange={handleChange}
 							className="w-full h-[3.25rem] bg-[#292929] border border-[#333333] rounded-md p-4"
 						/>
 					</div>
-					{/* Date */}
+					{/* Threshold Amount */}
 					<div className="mb-6">
-						<p className="text-lg mb-6">Budget Date</p>
+						<p className="text-lg mb-6">Threshold Amount</p>
 						<input
-							type="date"
+							type="number"
+							name="threshold_amount"
+							value={formData.threshold_amount}
+							onChange={handleChange}
 							className="w-full h-[3.25rem] bg-[#292929] border border-[#333333] rounded-md p-4"
 						/>
 					</div>
