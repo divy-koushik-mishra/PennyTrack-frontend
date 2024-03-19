@@ -2,7 +2,6 @@ import {
 	Card,
 	CardBody,
 	CardHeader,
-	Chip,
 	Typography,
 } from "@material-tailwind/react";
 import { useState, useEffect } from "react";
@@ -15,26 +14,6 @@ export function ViewExpenses() {
 	const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/expense/getExpense`;
 
 	useEffect(() => {
-		const accessToken = localStorage.getItem("accessToken");
-		// logout post request
-		axios
-			.post(
-				apiUrl,
-				{},
-				{
-					headers: {
-						Authorization: `Bearer ${accessToken}`,
-					},
-				},
-			)
-			.then((res) => {
-				const response = res.data;
-				console.log(response);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-
 		const fetchExpense = async () => {
 			try {
 				const accessToken = localStorage.getItem("accessToken");
@@ -65,6 +44,15 @@ export function ViewExpenses() {
 
 		fetchExpense();
 	}, []);
+
+	// Function to format date to DD-MM-YYYY
+	const formatDate = (dateString) => {
+		const date = new Date(dateString);
+		const day = date.getDate().toString().padStart(2, "0");
+		const month = (date.getMonth() + 1).toString().padStart(2, "0");
+		const year = date.getFullYear();
+		return `${day}-${month}-${year}`;
+	};
 
 	return (
 		<Card className="h-screen w-[96%] bg-[#1d1d1d] p-5">
@@ -109,7 +97,8 @@ export function ViewExpenses() {
 								expense_description,
 								expense_category,
 								expense_amount,
-							}) => {
+								createdAt,
+							}) => (
 								<tr key={_id}>
 									<td className="p-4 border-b border-blue-gray-50">
 										<div className="flex items-center gap-3">
@@ -140,8 +129,17 @@ export function ViewExpenses() {
 											{expense_amount || "-"}
 										</Typography>
 									</td>
-								</tr>;
-							},
+									<td className="p-4 border-b border-blue-gray-50">
+										<Typography
+											variant="small"
+											color="white"
+											className="font-normal"
+										>
+											{formatDate(createdAt)}
+										</Typography>
+									</td>
+								</tr>
+							),
 						)}
 					</tbody>
 				</table>
