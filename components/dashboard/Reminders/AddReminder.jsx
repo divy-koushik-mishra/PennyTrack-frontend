@@ -5,6 +5,7 @@ export default function AddReminder() {
 	const [formData, setFormData] = useState({
 		title: "",
 		amount: "",
+		date: "",
 	});
 	const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/reminder/addReminder`;
 
@@ -14,6 +15,14 @@ export default function AddReminder() {
 			...prevFormData,
 			[name]: value,
 		}));
+	};
+
+	const formatDate = (dateString) => {
+		const dateObject = new Date(dateString);
+		const day = dateObject.getDate().toString().padStart(2, "0");
+		const month = (dateObject.getMonth() + 1).toString().padStart(2, "0"); // Months are zero-based
+		const year = dateObject.getFullYear();
+		return `${day}-${month}-${year}`;
 	};
 
 	const handleSubmit = async (e) => {
@@ -37,6 +46,7 @@ export default function AddReminder() {
 			setFormData({
 				title: "",
 				amount: "",
+				date: "",
 			});
 		} catch (error) {
 			console.error("Error adding reminder:", error);
@@ -77,6 +87,9 @@ export default function AddReminder() {
 						<p className="text-lg mb-6">Reminder Date</p>
 						<input
 							type="date"
+							name="date"
+							value={formData.date}
+							onChange={handleChange}
 							className="w-full h-[3.25rem] bg-[#292929] border border-[#333333] rounded-md p-4"
 						/>
 					</div>

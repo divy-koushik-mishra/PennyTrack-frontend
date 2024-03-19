@@ -40,6 +40,14 @@ export function ViewReminders() {
 		fetchReminders();
 	}, []);
 
+	const formatDate = (dateString) => {
+		const dateObject = new Date(dateString);
+		const day = dateObject.getDate().toString().padStart(2, "0");
+		const month = (dateObject.getMonth() + 1).toString().padStart(2, "0"); // Months are zero-based
+		const year = dateObject.getFullYear();
+		return `${day}-${month}-${year}`;
+	};
+
 	const handleCheckboxChange = async (reminderId, isChecked) => {
 		try {
 			const accessToken = localStorage.getItem("accessToken");
@@ -147,7 +155,7 @@ export function ViewReminders() {
 										color="white"
 										className="font-normal"
 									>
-										{date}
+										{formatDate(date)}
 									</Typography>
 								</td>
 								<td className="border-b border-blue-gray-50">
