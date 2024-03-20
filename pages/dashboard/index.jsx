@@ -1,15 +1,11 @@
 import Budgeting from "@/components/dashboard/Homepage/Budgeting";
 import Chart from "@/components/dashboard/Homepage/Chart";
 import IEBCards from "@/components/dashboard/Homepage/IEBCards";
-import Reminders from "@/components/dashboard/Homepage/Reminders";
-import { Sidebar } from "@/components/dashboard/Sidebar";
 import Topbar from "@/components/dashboard/Homepage/Topbar";
-import { TransactionsTable } from "@/components/dashboard/Homepage/TransactionsTable";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { TransactionsPageTable } from "@/components/dashboard/Transaction/TransactioPageTable";
-import ReminderTabs from "@/components/dashboard/Reminders/ReminderTabs";
 import { ViewReminders } from "@/components/dashboard/Reminders/ViewReminders";
+import { Sidebar } from "@/components/dashboard/Sidebar";
+import { TransactionsPageTable } from "@/components/dashboard/Transaction/TransactioPageTable";
+import { useRouter } from "next/router";
 export default function Dashboard() {
   const router = useRouter();
   if (typeof window !== "undefined") {
