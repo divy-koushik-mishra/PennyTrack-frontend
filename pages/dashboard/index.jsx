@@ -1,3 +1,4 @@
+"use client";
 import Budgeting from "@/components/dashboard/Homepage/Budgeting";
 import PieChart from "@/components/dashboard/Homepage/Chart";
 import IEBCards from "@/components/dashboard/Homepage/IEBCards";
