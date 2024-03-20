@@ -1,32 +1,18 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar } from "@material-tailwind/react";
 import axios from "axios";
 
 export default function Topbar() {
-  //   // get refreshtoken
-  //   if (typeof window !== "undefined") {
-  //     const refreshToken = localStorage.getItem("refreshToken");
+  const [fullName, setFullName] = useState("");
 
-  //     //  get username using refreshtoken
-  //     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/current-user`;
-  //     axios
-  //       .post(
-  //         url,
-  //         {},
-  //         {
-  //           headers: { Authorization: `Bearer ${refreshToken}` },
-  //         }
-  //       )
-  //       .then((res) => {
-  //         console.log(res);
-  //         localStorage.setItem("fullName", res.data.data.fullName);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  const fullName = localStorage.getItem("fullName");
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const fullName = localStorage.getItem("fullName");
+      setFullName(fullName);
+    }
+  }, []);
+
   return (
     <div className="flex justify-between items-center p-8 h-28 w-full text-light-green-500">
       <h1 className="text-3xl font-medium">Welcome to PennyTrack Dashboard</h1>

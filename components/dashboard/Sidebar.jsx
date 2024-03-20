@@ -57,11 +57,13 @@ export function Sidebar() {
 
   return (
     <Card className="h-full w-full max-w-[16rem] p-4 shadow-xl shadow-blue-gray-900/5 bg-[#1d1d1d]">
-      <div className="mb-2 p-4">
-        <Typography variant="h3" color="light-green">
-          PennyTrack
-        </Typography>
-      </div>
+      <Link href="/">
+        <div className="mb-2 p-4">
+          <Typography variant="h3" color="light-green">
+            PennyTrack
+          </Typography>
+        </div>
+      </Link>
       <List className="text-light-green-500">
         {menuItems.map(({ icon, label, href }, index) => (
           <Link key={index} href={href}>

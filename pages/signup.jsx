@@ -117,7 +117,7 @@ export default function Signup() {
           />
           <div className="-ml-2.5">
             <Checkbox
-              label="Remember Me"
+              label="Terms and Conditions"
               color="light-green"
               className="text-white"
               labelProps={{ className: `text-light-green-500` }}
