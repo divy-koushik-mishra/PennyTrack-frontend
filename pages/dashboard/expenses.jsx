@@ -1,5 +1,7 @@
+"use client";
 import ExpensesTabs from "@/components/dashboard/Expenses/ExpensesTabs";
 import ExpensesTopbar from "@/components/dashboard/Expenses/ExpensesTopbar";
+import Topbar from "@/components/dashboard/Homepage/Topbar";
 import { Sidebar } from "@/components/dashboard/Sidebar";
 import { useRouter } from "next/router";
 

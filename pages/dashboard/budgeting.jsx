@@ -1,3 +1,4 @@
+"use client";
 import BudgetTabs from "@/components/dashboard/Budgeting/BudgetTabs";
 import BudgetTopbar from "@/components/dashboard/Budgeting/BudgetTopbar";
 import { Sidebar } from "@/components/dashboard/Sidebar";

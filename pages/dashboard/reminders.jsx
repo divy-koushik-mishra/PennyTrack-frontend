@@ -1,3 +1,4 @@
+"use client";
 import ReminderTabs from "@/components/dashboard/Reminders/ReminderTabs";
 import ReminderTopbar from "@/components/dashboard/Reminders/ReminderTopbar";
 import { Sidebar } from "@/components/dashboard/Sidebar";

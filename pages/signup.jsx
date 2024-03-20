@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import {
   Card,
@@ -18,14 +19,14 @@ export default function Signup() {
   // const accessToken = localStorage.getItem("accessToken");
 
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/register`;
-  const [fullname, setFullname] = useState("");
+  const [fullName, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
   const [checknox, setChecknox] = useState(false);
 
   const handleRegister = (e) => {
-    if (!fullname || !email || !password) {
+    if (!fullName || !email || !password) {
       alert("Please fill all the fields");
       e.preventDefault();
       return;
@@ -47,7 +48,7 @@ export default function Signup() {
     //  api post request
     axios
       .post(url, {
-        fullname,
+        fullName,
         email,
         password,
       })
@@ -86,7 +87,7 @@ export default function Signup() {
         </CardHeader>
         <CardBody className="flex flex-col gap-4">
           <Input
-            value={fullname}
+            value={fullName}
             onChange={(e) => setFullname(e.target.value)}
             label="Name"
             size="lg"
@@ -117,7 +118,7 @@ export default function Signup() {
           />
           <div className="-ml-2.5">
             <Checkbox
-              label="Remember Me"
+              label="Terms and Conditions"
               color="light-green"
               className="text-white"
               labelProps={{ className: `text-light-green-500` }}
