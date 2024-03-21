@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Alert from "@/components/utils/Alert";
 
 export default function AddIncome() {
   const [formData, setFormData] = useState({
@@ -8,6 +9,8 @@ export default function AddIncome() {
     income_amount: "",
     income_date: "", // Add income_date to formData
   });
+
+  const [showAlert, setShowAlert] = useState(false);
 
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/income/addIncome`;
 
@@ -37,6 +40,7 @@ export default function AddIncome() {
       const response = await axios.post(url, formData, config);
 
       console.log("Income added successfully:", response.data);
+      setShowAlert(true);
 
       setFormData({
         income_description: "",
@@ -51,6 +55,11 @@ export default function AddIncome() {
 
   return (
     <div className="text-white">
+      <div className="my-2 px-10">
+        {showAlert ? (
+          <Alert className="green" message="Income successfully added" />
+        ) : null}
+      </div>
       <form
         className="lg:flex flex-col m-4 lg:mx-[20rem]"
         onSubmit={handleSubmit}

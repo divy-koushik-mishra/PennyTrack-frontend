@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios"; // Import axios
+import Alert from "@/components/utils/Alert";
 
 export default function AddExpenses() {
   const [formData, setFormData] = useState({
@@ -8,6 +9,7 @@ export default function AddExpenses() {
     expense_amount: "",
     expense_date: "", // Add expense_date to formData
   });
+  const [showAlert, setShowAlert] = useState(false);
 
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/expense/addExpense`;
 
@@ -36,6 +38,7 @@ export default function AddExpenses() {
       const response = await axios.post(url, formData, config);
 
       console.log("Expense added successfully:", response.data);
+      setShowAlert(true);
 
       setFormData({
         expense_description: "",
@@ -50,6 +53,11 @@ export default function AddExpenses() {
 
   return (
     <div className="text-white">
+      <div className="my-2 px-10">
+        {showAlert ? (
+          <Alert className="green" message="Expense successfully created" />
+        ) : null}
+      </div>
       <form
         className="lg:flex flex-col m-4 lg:mx-[20rem]"
         onSubmit={handleSubmit}
