@@ -10,6 +10,14 @@ import { Sidebar } from "@/components/dashboard/Sidebar";
 import { TransactionsPageTable } from "@/components/dashboard/Transaction/TransactioPageTable";
 
 export default function Dashboard() {
+  const data = {
+    rent: 500,
+    groceries: 300,
+    food: 200,
+    outings: 150,
+    others: 100,
+  };
+
   const router = useRouter();
   const [income, setIncome] = useState("0");
   const [expenses, setExpenses] = useState("0");
@@ -63,7 +71,7 @@ export default function Dashboard() {
           <Topbar />
           <IEBCards />
           <div className="flex flex-1 gap-x-4 pt-6 w-full">
-            <PieChart income={income} expense={expenses} />
+            <PieChart data={data} />
             <Budgeting />
           </div>
           <div className="flex gap-x-4 pt-6 pr-7 mb-4 w-full">
