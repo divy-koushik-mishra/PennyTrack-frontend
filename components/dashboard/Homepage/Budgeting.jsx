@@ -8,26 +8,29 @@ export default function Budgeting() {
   useEffect(() => {
     const fetchBudget = async () => {
       try {
-        const accessToken = localStorage.getItem("accessToken");
-        if (!accessToken) {
-          console.error("Access token not found");
-          return;
-        }
+        if (typeof window !== "undefined") {
+          const accessToken = localStorage.getItem("accessToken");
 
-        const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/budget/getBudget`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
+          if (!accessToken) {
+            console.error("Access token not found");
+            return;
           }
-        );
 
-        if (response.data.success) {
-          setBudget(response.data.data);
-        } else {
-          console.error("Failed to fetch Budget:", response.data.message);
+          const response = await axios.post(
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/budget/getBudget`,
+            {},
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          );
+
+          if (response.data.success) {
+            setBudget(response.data.data);
+          } else {
+            console.error("Failed to fetch Budget:", response.data.message);
+          }
         }
       } catch (error) {
         console.error("Error fetching Budget:", error);

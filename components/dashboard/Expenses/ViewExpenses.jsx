@@ -16,7 +16,10 @@ export function ViewExpenses() {
   useEffect(() => {
     const fetchExpense = async () => {
       try {
-        const accessToken = localStorage.getItem("accessToken");
+        if (typeof window !== "undefined") {
+          const accessToken = localStorage.getItem("accessToken");
+          const item = localStorage.getItem("key");
+        }
         if (!accessToken) {
           console.error("Access token not found");
           return;

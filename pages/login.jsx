@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import {
   Card,
@@ -16,15 +16,16 @@ import axios from "axios";
 
 export default function Login() {
   const router = useRouter();
-
-  //  verift access token
-  // const accessToken = localStorage.getItem("accessToken");
-  if (typeof window !== "undefined") {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
-      router.push("/dashboard");
+  useEffect(() => {
+    //  verift access token
+    // const accessToken = localStorage.getItem("accessToken");
+    if (typeof window !== "undefined") {
+      const accessToken = localStorage.getItem("accessToken");
+      if (accessToken) {
+        router.push("/dashboard");
+      }
     }
-  }
+  });
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/login`;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

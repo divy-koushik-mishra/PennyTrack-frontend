@@ -3,15 +3,18 @@ import { Sidebar } from "@/components/dashboard/Sidebar";
 import { TransactionsPageTable } from "@/components/dashboard/Transaction/TransactioPageTable";
 import TransactionTopbar from "@/components/dashboard/Transaction/TransactionTopbar";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function transactions() {
   const router = useRouter();
-  if (typeof window !== "undefined") {
-    const accessToken = localStorage.getItem("accessToken");
-    if (!accessToken) {
-      router.push("/login");
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const accessToken = localStorage.getItem("accessToken");
+      if (!accessToken) {
+        router.push("/login");
+      }
     }
-  }
+  });
   return (
     <div className="flex flex-col">
       <div className="flex">

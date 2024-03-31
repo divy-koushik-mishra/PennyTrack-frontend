@@ -9,34 +9,38 @@ const IEBCards = () => {
 
   const incomeUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/income/totalIncome`;
   const expensesUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/expense/totalExpense`;
-  const accessToken = localStorage.getItem("accessToken");
 
-  const getIncomeExpenses = async () => {
-    try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      };
+  if (typeof window !== "undefined") {
+    // Perform localStorage action
+    const accessToken = localStorage.getItem("accessToken");
 
-      const [incomeResponse, expensesResponse] = await Promise.all([
-        axios.get(incomeUrl, config),
-        axios.get(expensesUrl, config),
-      ]);
+    const getIncomeExpenses = async () => {
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        };
 
-      const { totalIncome } = incomeResponse.data.data;
-      const { totalExpense } = expensesResponse.data.data;
+        const [incomeResponse, expensesResponse] = await Promise.all([
+          axios.get(incomeUrl, config),
+          axios.get(expensesUrl, config),
+        ]);
 
-      console.log("Income Response:", totalIncome);
-      console.log("Expenses Response:", totalExpense);
+        const { totalIncome } = incomeResponse.data.data;
+        const { totalExpense } = expensesResponse.data.data;
 
-      setIncome(totalIncome);
-      setExpenses(totalExpense);
-      setBalance(totalIncome - totalExpense);
-    } catch (error) {
-      console.error("Error fetching income and expenses:", error);
-    }
-  };
+        console.log("Income Response:", totalIncome);
+        console.log("Expenses Response:", totalExpense);
+
+        setIncome(totalIncome);
+        setExpenses(totalExpense);
+        setBalance(totalIncome - totalExpense);
+      } catch (error) {
+        console.error("Error fetching income and expenses:", error);
+      }
+    };
+  }
 
   useEffect(() => {
     getIncomeExpenses();

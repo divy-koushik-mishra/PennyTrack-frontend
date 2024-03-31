@@ -24,10 +24,14 @@ export default function AddExpenses() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const accessToken = localStorage.getItem("accessToken");
-      if (!accessToken) {
-        return;
+      if (typeof window !== "undefined") {
+        const accessToken = localStorage.getItem("accessToken");
+        const item = localStorage.getItem("key");
       }
+      //
+      // if (!accessToken) {
+      //   return;
+      // }
 
       const config = {
         headers: {

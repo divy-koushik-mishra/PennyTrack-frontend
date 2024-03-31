@@ -25,13 +25,12 @@ export default function Dashboard() {
   useEffect(() => {
     const getIncomeExpenses = async () => {
       try {
-        // Check if running in the browser before accessing localStorage
-        // if (typeof window !== "undefined") {
-        //   const accessToken = localStorage.getItem("accessToken");
-        //   if (!accessToken) {
-        //     router.push("/login");
-        //     return;
-        //   }
+        if (typeof window !== "undefined") {
+          const accessToken = localStorage.getItem("accessToken");
+          if (!accessToken) {
+            router.push("/login");
+            return;
+          }
 
           const incomeUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/income/totalIncome`;
           const expensesUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/expense/totalExpense`;
