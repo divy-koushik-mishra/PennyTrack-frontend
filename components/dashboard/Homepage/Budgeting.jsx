@@ -108,10 +108,13 @@ export default function Budgeting() {
               Budget: ₹{item.budget_amount}
             </p>
             <div className="h-4 bg-gray-300 rounded-full mt-2">
+              {/* if item.budget_category > 100%, set it to 100% */}
               <div
-                className="h-full bg-light-green-500 rounded-full"
+                className="h-full bg-light-green-500 rounded-full overflow-hidden"
                 style={{
-                  width: `${getCategoryProgress(item.budget_category)}%`,
+                  width: `${getCategoryProgress(
+                    item.budget_category
+                  )}%> ? 100% : ${getCategoryProgress(item.budget_category)}%`,
                 }}
               ></div>
             </div>

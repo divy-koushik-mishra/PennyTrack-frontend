@@ -71,7 +71,7 @@ export function TransactionsPageTable() {
             </Typography>
           </div>
         </CardHeader>
-        <CardBody className="overflow-hidden px-0">
+        <CardBody className="overflow-x-scroll px-0">
           <table className="w-full min-w-max table-auto text-left">
             <thead>
               <tr>

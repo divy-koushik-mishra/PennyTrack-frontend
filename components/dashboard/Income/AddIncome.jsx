@@ -6,7 +6,7 @@ export default function AddIncome() {
   const [formData, setFormData] = useState({
     income_description: "",
     income_category: "",
-    income_amount: "",
+    income_amount: 0,
     income_date: "", // Add income_date to formData
   });
 
